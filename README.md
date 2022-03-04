@@ -36,8 +36,70 @@ Alpaca::News::Api::HistoricalNews.where(symbols: 'SVM,GOLD,NEM', limit: 50).find
   break if (page += 1) >= 5
   objects.each { |object| puts "[#{object.id}] #{object.headline}" }
 end
+```
+
+## Available parameters
+
+For more details please check documentation
+
+```ruby
+params = {
+  symbols: 'GOLD,GDX,GDXJ',
+  start: '01-01-2020',
+  end: '01-01-2021',
+  limit: 50,
+  sort: 'DESC',
+  include_content: false,
+  exclude_contentless: false
+}
+Alpaca::News::Api::HistoricalNews.where(params).recent
+```
+
+## Available methods
+
+You can fetch news using various of methods:
+
+```ruby
+params = { symbols: 'SVM,GOLD,NEM', limit: 50 }
+
+Alpaca::News::Api::HistoricalNews.where(params).all
+Alpaca::News::Api::HistoricalNews.where(params).find_each { |object| puts object.headline }
+Alpaca::News::Api::HistoricalNews.where(params).find_in_batches do |objects|
+  objects.each { |object| puts object.headline }
+end
+
+# Alternatives to Alpaca::News::Api::HistoricalNews.where(params).all
+Alpaca::News::Api::HistoricalNews.where(params).recent
+Alpaca::News::Api::HistoricalNews.where(params).query
+Alpaca::News::Api::HistoricalNews.where(params).search
+Alpaca::News::Api::HistoricalNews.where(params).lookup
+Alpaca::News::Api::HistoricalNews.where(params).get
+Alpaca::News::Api::HistoricalNews.where(params).find_all
 
 ```
+
+## Available News object attributes
+
+```ruby
+> news = Alpaca::News::Api::HistoricalNews.where(params).recent.first
+> news.attributes.keys.each { |key| puts key }
+
+id
+headline
+author
+created_at
+updated_at
+summary
+url
+images
+symbols
+source
+
+```
+
+## To-do
+
+* RealtimeNews websocket support
 
 ## Development
 
