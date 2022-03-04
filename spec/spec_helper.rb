@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 
+require 'simplecov'
+
+SimpleCov.start do
+  require 'simplecov-lcov'
+  SimpleCov::Formatter::LcovFormatter.config do |config|
+    config.report_with_single_file = true
+    config.single_report_path = 'coverage/lcov.info'
+  end
+  formatter SimpleCov::Formatter::LcovFormatter
+  add_filter %w[vendor spec sig bin]
+end
+
 require "vcr"
 require "alpaca-news-api"
 require "dotenv"
