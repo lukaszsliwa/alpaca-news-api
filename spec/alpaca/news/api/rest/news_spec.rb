@@ -7,7 +7,7 @@ RSpec.describe Alpaca::News::Api::Rest::News do
 
   describe '#where' do
     it 'should set params' do
-      expect(news.where(limit: 10).params).to eq({ limit: 10 })
+      expect(news.where(limit: 10).params).to eq({ 'limit' => 10 })
     end
   end
 
@@ -70,7 +70,77 @@ RSpec.describe Alpaca::News::Api::Rest::News do
 
   describe '.where' do
     it 'should set params' do
-      expect(described_class.where(limit: 10).params).to eq({ limit: 10 })
+      expect(described_class.where(limit: 10).params).to eq({ 'limit' => 10 })
+    end
+
+    context 'with :symbols as an array' do
+      let(:params) { described_class.where(symbols: %w(GOLD GDX GDXJ)).params }
+
+      it 'should convert symbols to a string' do
+        expect(params).to eq({ 'symbols' => 'GOLD,GDX,GDXJ' })
+      end
+    end
+
+    context 'with :symbols as string' do
+      let(:params) { described_class.where(symbols: 'GOLD,GDX,GDXJ').params }
+
+      it 'should return a string' do
+        expect(params).to eq({ 'symbols' => 'GOLD,GDX,GDXJ' })
+      end
+    end
+
+    context 'with :start as a Time' do
+      let(:start) { Time.now }
+      let(:params) { described_class.where(start: start).params }
+
+      it 'should convert start to RFC3339 format' do
+        expect(params).to eq({ 'start' => start.utc.rfc3339 })
+      end
+    end
+
+    context 'with :start as a DateTime' do
+      let(:start) { DateTime.now }
+      let(:params) { described_class.where(start: start).params }
+
+      it 'should convert start to RFC3339 format' do
+        expect(params).to eq({ 'start' => start.utc.rfc3339 })
+      end
+    end
+
+    context 'with :start as a String' do
+      let(:start) { DateTime.now.to_s }
+      let(:params) { described_class.where(start: start).params }
+
+      it 'should convert start to RFC3339 format' do
+        expect(params).to eq({ 'start' => start.to_time.utc.rfc3339 })
+      end
+    end
+
+    context 'with :end as a Time' do
+      let(:end_time) { Time.now }
+      let(:params) { described_class.where(end: end_time).params }
+
+      it 'should convert end to RFC3339 format' do
+        expect(params).to eq({ 'end' => end_time.utc.rfc3339 })
+      end
+    end
+
+    context 'with :end as a DateTime' do
+      let(:end_time) { DateTime.now }
+      let(:params) { described_class.where(end: end_time).params }
+
+      it 'should convert end to RFC3339 format' do
+        expect(params).to eq({ 'end' => end_time.utc.rfc3339 })
+      end
+    end
+
+    context 'with :end as a String' do
+      let(:end_time) { DateTime.now.to_s }
+      let(:params) { described_class.where(end: end_time).params }
+
+      it 'should convert end to RFC3339 format' do
+        expect(params).to eq({ 'end' => end_time.to_time.utc.rfc3339 })
+      end
     end
   end
 

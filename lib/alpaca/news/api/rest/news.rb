@@ -35,7 +35,14 @@ module Alpaca
           # @option params [String] page_token            Pagination token to continue to next page
           #
           def where(params = {})
-            @params = params
+            @params = ActiveSupport::HashWithIndifferentAccess.new(params)
+            @params[:symbols] = @params[:symbols].join(',') if @params[:symbols].is_a?(Array)
+            if %w[Time DateTime Date String].include?(@params[:start].class.name)
+              @params[:start] = DateTime.parse(@params[:start].to_s).to_time.utc.rfc3339
+            end
+            if %w[Time DateTime Date String].include?(@params[:end].class.name)
+              @params[:end] = DateTime.parse(@params[:end].to_s).to_time.utc.rfc3339
+            end
             self
           end
 

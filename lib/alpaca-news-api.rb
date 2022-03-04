@@ -3,6 +3,7 @@
 require 'active_support/core_ext/hash/keys'
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/module/delegation'
+require 'active_support/core_ext/hash/indifferent_access'
 require 'json'
 require 'time'
 
