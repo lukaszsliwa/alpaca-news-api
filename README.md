@@ -1,6 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/alpaca-news-api.svg)](https://badge.fury.io/rb/alpaca-news-api)
 [![License MIT](https://img.shields.io/github/license/lukaszsliwa/alpaca-news-api)](https://github.com/lukaszsliwa/alpaca-news-api/blob/master/LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/lukaszsliwa/alpaca-news-api/badge.svg?branch=master)](https://coveralls.io/github/lukaszsliwa/alpaca-news-api?branch=master)
 
 # Alpaca::News::Api
 
