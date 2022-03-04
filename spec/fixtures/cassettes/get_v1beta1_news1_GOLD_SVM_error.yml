@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.alpaca.markets/v1beta1/news1?symbols=GOLD,SVM
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - alpaca-news-api-0.1.1/ruby-2.6.3
+      Apca-Api-Key-Id:
+      - VI8SFQZB2U1B4NCEGPK8
+      Apca-Api-Secret-Key:
+      - 1IgjOFN9bmLwVOQq92RDEtXzOk7eaC7e12L5qgR4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - data.alpaca.markets
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Fri, 04 Mar 2022 09:21:31 GMT
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '9'
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: Not Found
+  recorded_at: Fri, 04 Mar 2022 09:21:31 GMT
+recorded_with: VCR 6.0.0

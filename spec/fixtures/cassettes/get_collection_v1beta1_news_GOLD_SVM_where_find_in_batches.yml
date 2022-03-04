@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.alpaca.markets/v1beta1/news?limit=4&symbols=GOLD
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - alpaca-news-api-0.1.1/ruby-2.6.3
+      Apca-Api-Key-Id:
+      - VI8SFQZB2U1B4NCEGPK8
+      Apca-Api-Secret-Key:
+      - 1IgjOFN9bmLwVOQq92RDEtXzOk7eaC7e12L5qgR4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - data.alpaca.markets
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 04 Mar 2022 09:21:39 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Origin
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: ASCII-8BIT
+      string: '{"news":[{"id":25764253,"headline":"What Are Whales Doing With Barrick
+        Gold","author":"Benzinga Insights","created_at":"2022-02-22T20:33:00Z","updated_at":"2022-02-22T20:33:00Z","summary":"Someone
+        with a lot of money to spend has taken a bearish stance on Barrick Gold (NYSE:GOLD).\nAnd
+        retail traders should know.\nWe noticed this today when the big position showed
+        up on publicly available options history that we track here at Benzinga.","url":"https://www.benzinga.com/markets/options/22/02/25764253/what-are-whales-doing-with-barrick-gold","images":[{"size":"large","url":"https://cdn.benzinga.com/files/imagecache/2048x1536xUP/images/story/2022/movers_image_3010.jpeg"},{"size":"small","url":"https://cdn.benzinga.com/files/imagecache/1024x768xUP/images/story/2022/movers_image_3010.jpeg"},{"size":"thumb","url":"https://cdn.benzinga.com/files/imagecache/250x187xUP/images/story/2022/movers_image_3010.jpeg"}],"symbols":["GOLD"],"source":"benzinga"},{"id":25696133,"headline":"Trader
+        Jon Najarian Highlights Unusual Option Activity In Yamana Gold; BZ NOTE: Najarian
+        On Air Said Yamana Gold But The On-Screen Chart Showed Barrick Gold","author":"Benzinga
+        Newsdesk","created_at":"2022-02-17T17:59:09Z","updated_at":"2022-02-17T17:59:09Z","summary":"","url":"https://www.benzinga.com/markets/options/22/02/25696133/trader-jon-najarian-highlights-unusual-option-activity-in-yamana-gold-bz-note-najarian-on-air-sai","images":[],"symbols":["AUY","GOLD"],"source":"benzinga"},{"id":25664881,"headline":"Barrick
+        Gold Earlier Raises Its Qtr. Dividend From $0.09 To $0.10/Share","author":"Benzinga
+        Newsdesk","created_at":"2022-02-16T15:42:28Z","updated_at":"2022-02-16T15:42:28Z","summary":"","url":"https://www.benzinga.com/news/22/02/25664881/barrick-gold-earlier-raises-its-qtr-dividend-from-0-09-to-0-10share","images":[],"symbols":["GOLD"],"source":"benzinga"},{"id":25664858,"headline":"Barrick
+        Gold Earlier Reported Q4 EPS $0.35 Beats $0.31 Estimate, Sales $3.31B Beat
+        $3.18B Estimate","author":"Benzinga Newsdesk","created_at":"2022-02-16T15:41:40Z","updated_at":"2022-02-16T15:41:41Z","summary":"","url":"https://www.benzinga.com/news/earnings/22/02/25664858/barrick-gold-earlier-reported-q4-eps-0-35-beats-0-31-estimate-sales-3-31b-beat-3-18b-estimate","images":[],"symbols":["GOLD"],"source":"benzinga"}],"next_page_token":"MTY0NTAyNjEwMTAwMDAwMDAwMHwyNTY2NDg1OA=="}'
+  recorded_at: Fri, 04 Mar 2022 09:21:39 GMT
+recorded_with: VCR 6.0.0
