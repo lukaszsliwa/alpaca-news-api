@@ -31,6 +31,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rake', '>= 13.0'
   spec.add_dependency 'rest-client', '>= 2.1.0'
   spec.add_dependency 'activesupport', '>= 4.0'
+  spec.add_dependency 'faye-websocket', '~> 0.11.1'
+  spec.add_dependency 'eventmachine', '~> 1.2.7'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

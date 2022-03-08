@@ -10,6 +10,7 @@ RSpec.describe Alpaca::News::Api::Models::News do
       updated_at: Time.now.to_formatted_s(:rfc3339),
       summary: 'This is summary',
       url: 'https://host.external/link-to-article',
+      content: 'Article Content',
       images: ['https://host.external/image1.jpeg'],
       symbols: ['GOLD', 'SVM', 'AAPL'],
       source: 'host.external'
@@ -56,6 +57,12 @@ RSpec.describe Alpaca::News::Api::Models::News do
   describe '#url' do
     it 'should return url' do
       expect(news.url).to eq('https://host.external/link-to-article')
+    end
+  end
+
+  describe '#content' do
+    it 'should return content' do
+      expect(news.content).to eq('Article Content')
     end
   end
 

@@ -21,7 +21,9 @@ module Alpaca
         #
         def default_options
           {
-            host: 'data.alpaca.markets'
+            host: 'data.alpaca.markets',
+            stream: 'stream.data.alpaca.markets',
+            client_options: {}
           }
         end
       end

@@ -47,6 +47,12 @@ module Alpaca
           #
           attr_accessor :url
 
+          # News content
+          #
+          # @return [String]
+          #
+          attr_accessor :content
+
           # News images
           #
           # @return [Array]
@@ -70,7 +76,8 @@ module Alpaca
           # @param [Hash] attributes
           #
           def initialize(attributes = {})
-            (@attributes = attributes).each do |key, value|
+            @attributes = ActiveSupport::HashWithIndifferentAccess.new(attributes)
+            @attributes.each do |key, value|
               method(:"#{key}=").call(value)
             end
             @created_at = Time.parse(@created_at) if @created_at.is_a?(String)

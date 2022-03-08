@@ -34,14 +34,22 @@ Alpaca::News::Api.configure do |config|
   config.secret_key = ENV.fetch('ALPACA_API_SECRET_KEY')
 end
 
+# REST API
 page = 0
 Alpaca::News::Api::HistoricalNews.where(symbols: 'SVM,GOLD,NEM', limit: 50).find_in_batches do |objects|
   break if (page += 1) >= 5
   objects.each { |object| puts "[#{object.id}] #{object.headline}" }
 end
+
+# Realtime API
+Alpaca::News::Api::RealtimeNews.stream('SVM,GOLD,NEM') do |event|
+  puts "[#{event.news.symbols.join(',')}] #{event.news.headline}"
+end
 ```
 
-## Available parameters
+## REST API
+
+### Available parameters
 
 For more details please check documentation
 
@@ -58,7 +66,7 @@ params = {
 Alpaca::News::Api::HistoricalNews.where(params).recent
 ```
 
-## Available methods
+### Available methods
 
 You can fetch news using various of methods:
 
@@ -81,6 +89,55 @@ Alpaca::News::Api::HistoricalNews.where(params).find_all
 
 ```
 
+## Realtime API
+
+```ruby
+symbols = ['GDX']
+
+Alpaca::News::Api::RealtimeNews.stream(symbols) do |object|
+  puts "[#{object.symbols.join(',')}] #{object.headline}"
+end
+```
+
+### Available parameters
+
+```ruby
+options = { key: Alpaca::News::Api.configure.key_id, secret: Alpaca::News::Api.configure.secret_key }
+
+Alpaca::News::Api::RealtimeNews.stream(:all, options) do |event|
+  puts event.object.headline
+end
+```
+
+or
+
+```ruby
+options = { key: Alpaca::News::Api.configure.key_id, secret: Alpaca::News::Api.configure.secret_key }
+
+Alpaca::News::Api::RealtimeNews.stream(:all, options) do |event|
+  event.objects.each { |object| puts object.headline }
+end
+```
+
+### Available methods
+
+```ruby
+symbols = %w[GOLD OXY GDX GDXJ]
+
+Alpaca::News::Api::RealtimeNews.run(symbols) { |event| puts event.news.headline }
+Alpaca::News::Api::RealtimeNews.stream(symbols) { |event| puts event.news.headline }
+Alpaca::News::Api::RealtimeNews.subscribe(symbols) { |event| puts event.news.headline }
+Alpaca::News::Api::RealtimeNews.watch(symbols) { |event| puts event.news.headline }
+
+realtime_news = Alpaca::News::Api::RealtimeNews.new
+realtime_news.on_error do |event|
+  puts event.message
+end
+realtime_news.on_close do
+  # ...
+end
+```
+
 ## Available News object attributes
 
 ```ruby
@@ -88,6 +145,7 @@ Alpaca::News::Api::HistoricalNews.where(params).find_all
 > news.attributes.keys.each { |key| puts key }
 
 id
+content
 headline
 author
 created_at
@@ -100,9 +158,15 @@ source
 
 ```
 
-## To-do
+## Working with Alpaca News Realtime API websockets
 
-* RealtimeNews websocket support
+```bash
+$ wscat -c wss://stream.data.alpaca.markets/v1beta1/news
+Connected (press CTRL+C to quit)
+> {"action": "auth", "key": "<KEY>", "secret": "<SECRET>"}
+> {"action": "subscribe", "news": ["*"]}
+> {"action": "unsubscribe", "news": ["*"]}
+```
 
 ## Development
 

@@ -16,6 +16,8 @@ require "vcr"
 require "alpaca-news-api"
 require "dotenv"
 
+require "eventmachine"
+
 Dotenv.load('.env.test')
 
 VCR.configure do |config|

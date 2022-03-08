@@ -8,6 +8,8 @@ gemspec
 gem 'rake', '>= 13.0'
 gem 'rest-client', '>= 2.1.0'
 gem 'activesupport', '>= 4.0'
+gem 'faye-websocket', '~> 0.11.1'
+gem 'eventmachine', '~> 1.2.7'
 
 group :development do
   gem 'simplecov', '~> 0.21.2'
