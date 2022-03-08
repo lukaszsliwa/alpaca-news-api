@@ -94,8 +94,8 @@ Alpaca::News::Api::HistoricalNews.where(params).find_all
 ```ruby
 symbols = ['GDX']
 
-Alpaca::News::Api::RealtimeNews.stream(symbols) do |object|
-  puts "[#{object.symbols.join(',')}] #{object.headline}"
+Alpaca::News::Api::RealtimeNews.stream(symbols) do |event|
+  puts "[#{event.object.symbols.join(',')}] #{event.object.headline}"
 end
 ```
 
