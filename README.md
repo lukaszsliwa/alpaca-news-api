@@ -43,7 +43,7 @@ end
 
 # Realtime API
 Alpaca::News::Api::RealtimeNews.stream('SVM,GOLD,NEM') do |event|
-  puts "[#{event.news.symbols.join(',')}] #{event.news.headline}"
+  puts "[#{event.object.symbols.join(',')}] #{event.object.headline}"
 end
 ```
 
@@ -124,10 +124,10 @@ end
 ```ruby
 symbols = %w[GOLD OXY GDX GDXJ]
 
-Alpaca::News::Api::RealtimeNews.run(symbols) { |event| puts event.news.headline }
-Alpaca::News::Api::RealtimeNews.stream(symbols) { |event| puts event.news.headline }
-Alpaca::News::Api::RealtimeNews.subscribe(symbols) { |event| puts event.news.headline }
-Alpaca::News::Api::RealtimeNews.watch(symbols) { |event| puts event.news.headline }
+Alpaca::News::Api::RealtimeNews.run(symbols) { |event| puts event.object.headline }
+Alpaca::News::Api::RealtimeNews.stream(symbols) { |event| puts event.object.headline }
+Alpaca::News::Api::RealtimeNews.subscribe(symbols) { |event| puts event.object.headline }
+Alpaca::News::Api::RealtimeNews.watch(symbols) { |event| puts event.object.headline }
 
 realtime_news = Alpaca::News::Api::RealtimeNews.new
 realtime_news.on_error do |event|
